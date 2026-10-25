@@ -27,19 +27,19 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('createRepositoryTransfer', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_repository_transfer_current_organization: 'issue-ops',
-        create_repository_transfer_target_organization: 'not-issue-ops',
+        create_repository_transfer_current_organization: 'EficodeDemoOrg',
+        create_repository_transfer_target_organization: 'not-EficodeDemoOrg',
         create_repository_transfer_name: 'self-service'
       })
     )
@@ -58,14 +58,14 @@ describe('createRepositoryTransfer', () => {
   })
 
   it('Creates a repository transfer (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createRepositoryTransfer(issueOpsInputs)
 
     expect(mocktokit.rest.repos.transfer).toHaveBeenCalledWith({
-      owner: 'issue-ops',
+      owner: 'EficodeDemoOrg',
       repo: 'self-service',
-      new_owner: 'not-issue-ops'
+      new_owner: 'not-EficodeDemoOrg'
     })
     expect(issues.addComment).toHaveBeenCalled()
     expect(issues.closeIssue).toHaveBeenCalled()

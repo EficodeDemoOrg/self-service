@@ -10,7 +10,7 @@ const inputs = await import('../../action/utils/inputs.js')
 describe('getIssueOpsInputs', () => {
   beforeEach(() => {
     core.getInput
-      .mockReturnValueOnce('issue-ops') // issue_ops_organization
+      .mockReturnValueOnce('EficodeDemoOrg') // issue_ops_organization
       .mockReturnValueOnce('self-service') // issue_ops_repository
       .mockReturnValueOnce('1') // issue_number
   })
@@ -23,7 +23,7 @@ describe('getIssueOpsInputs', () => {
     const response = inputs.getIssueOpsInputs()
 
     expect(response).toMatchObject({
-      organization: 'issue-ops',
+      organization: 'EficodeDemoOrg',
       repository: 'self-service',
       issueNumber: 1
     })

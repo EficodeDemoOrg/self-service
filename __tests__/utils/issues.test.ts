@@ -30,7 +30,7 @@ describe('addComment', () => {
   it('Adds a comment', async () => {
     await issues.addComment(
       mocktokit,
-      'issue-ops',
+      'EficodeDemoOrg',
       'self-service',
       1,
       'Hello, World!'
@@ -46,7 +46,7 @@ describe('closeIssue', () => {
   })
 
   it('Closes an issue as completed', async () => {
-    await issues.closeIssue(mocktokit, 'issue-ops', 'self-service', 1)
+    await issues.closeIssue(mocktokit, 'EficodeDemoOrg', 'self-service', 1)
 
     expect(mocktokit.rest.issues.update).toHaveBeenCalled()
   })
@@ -54,7 +54,7 @@ describe('closeIssue', () => {
   it('Closes an issue as not planned', async () => {
     await issues.closeIssue(
       mocktokit,
-      'issue-ops',
+      'EficodeDemoOrg',
       'self-service',
       1,
       'not_planned'

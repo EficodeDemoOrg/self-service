@@ -27,18 +27,18 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('createRepositoryTransfer', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_project_organization: 'issue-ops',
+        create_project_organization: 'EficodeDemoOrg',
         create_project_title: 'Project Title',
         create_project_team: 'maintainers',
         create_project_repository: 'self-service'
@@ -87,7 +87,7 @@ describe('createRepositoryTransfer', () => {
   })
 
   it('Creates a repository transfer (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createProject(issueOpsInputs)
 
