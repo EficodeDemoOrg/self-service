@@ -27,18 +27,18 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('createOrganizationInvitation', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_organization_invitation_organization: 'issue-ops',
+        create_organization_invitation_organization: 'EficodeDemoOrg',
         create_organization_invitation_handle: 'mona',
         create_organization_invitation_role: 'Direct Member'
       })
@@ -81,7 +81,7 @@ describe('createOrganizationInvitation', () => {
   })
 
   it('Creates a repository transfer (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createOrganizationInvitation(issueOpsInputs)
 

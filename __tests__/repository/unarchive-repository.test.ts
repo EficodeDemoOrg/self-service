@@ -27,14 +27,14 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('unarchiveRepository', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     mocktokit.rest.repos.get.mockResolvedValue({
       data: {
@@ -44,7 +44,7 @@ describe('unarchiveRepository', () => {
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        unarchive_repository_organization: 'issue-ops',
+        unarchive_repository_organization: 'EficodeDemoOrg',
         unarchive_repository_name: 'self-service'
       })
     )
@@ -63,12 +63,12 @@ describe('unarchiveRepository', () => {
   })
 
   it('Unarchives a repository (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await unarchiveRepository(issueOpsInputs)
 
     expect(mocktokit.rest.repos.update).toHaveBeenCalledWith({
-      owner: 'issue-ops',
+      owner: 'EficodeDemoOrg',
       repo: 'self-service',
       archived: false
     })
@@ -83,7 +83,7 @@ describe('unarchiveRepository', () => {
       }
     } as any)
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await unarchiveRepository(issueOpsInputs)
 

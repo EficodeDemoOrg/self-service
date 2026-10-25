@@ -27,14 +27,14 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('renameRepository', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     mocktokit.rest.repos.get.mockResolvedValue({
       data: {
@@ -44,7 +44,7 @@ describe('renameRepository', () => {
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        rename_repository_organization: 'issue-ops',
+        rename_repository_organization: 'EficodeDemoOrg',
         rename_repository_current_name: 'self-service',
         rename_repository_new_name: 'self-service-new'
       })
@@ -64,12 +64,12 @@ describe('renameRepository', () => {
   })
 
   it('Renames a repository (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await renameRepository(issueOpsInputs)
 
     expect(mocktokit.rest.repos.update).toHaveBeenCalledWith({
-      owner: 'issue-ops',
+      owner: 'EficodeDemoOrg',
       repo: 'self-service',
       name: 'self-service-new'
     })
@@ -84,7 +84,7 @@ describe('renameRepository', () => {
       }
     } as any)
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await renameRepository(issueOpsInputs)
 

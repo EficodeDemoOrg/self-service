@@ -27,14 +27,14 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('createActionsVariable', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     mocktokit.rest.repos.get.mockResolvedValue({
       data: {
@@ -50,7 +50,7 @@ describe('createActionsVariable', () => {
   it('Creates an organization variable with visibility all (demo mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_actions_variable_organization: 'issue-ops',
+        create_actions_variable_organization: 'EficodeDemoOrg',
         create_actions_variable_name: 'MY_VARIABLE',
         create_actions_variable_value: 'MY_VALUE',
         create_actions_variable_visibility: 'all',
@@ -68,7 +68,7 @@ describe('createActionsVariable', () => {
   it('Creates an organization variable with visibility all (live mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_actions_variable_organization: 'issue-ops',
+        create_actions_variable_organization: 'EficodeDemoOrg',
         create_actions_variable_name: 'MY_VARIABLE',
         create_actions_variable_value: 'MY_VALUE',
         create_actions_variable_visibility: 'all',
@@ -76,12 +76,12 @@ describe('createActionsVariable', () => {
       })
     )
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createActionsVariable(issueOpsInputs)
 
     expect(mocktokit.rest.actions.createOrgVariable).toHaveBeenCalledWith({
-      org: 'issue-ops',
+      org: 'EficodeDemoOrg',
       name: 'MY_VARIABLE',
       value: 'MY_VALUE',
       visibility: 'all'
@@ -93,7 +93,7 @@ describe('createActionsVariable', () => {
   it('Creates an organization variable with visibility selected (demo mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_actions_variable_organization: 'issue-ops',
+        create_actions_variable_organization: 'EficodeDemoOrg',
         create_actions_variable_name: 'MY_VARIABLE',
         create_actions_variable_value: 'MY_VALUE',
         create_actions_variable_visibility: 'selected',
@@ -111,7 +111,7 @@ describe('createActionsVariable', () => {
   it('Creates an organization variable with visibility selected (live mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_actions_variable_organization: 'issue-ops',
+        create_actions_variable_organization: 'EficodeDemoOrg',
         create_actions_variable_name: 'MY_VARIABLE',
         create_actions_variable_value: 'MY_VALUE',
         create_actions_variable_visibility: 'selected',
@@ -119,12 +119,12 @@ describe('createActionsVariable', () => {
       })
     )
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createActionsVariable(issueOpsInputs)
 
     expect(mocktokit.rest.actions.createOrgVariable).toHaveBeenCalledWith({
-      org: 'issue-ops',
+      org: 'EficodeDemoOrg',
       name: 'MY_VARIABLE',
       value: 'MY_VALUE',
       visibility: 'selected',
@@ -137,7 +137,7 @@ describe('createActionsVariable', () => {
   it('Creates an organization variable with visibility private (demo mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_actions_variable_organization: 'issue-ops',
+        create_actions_variable_organization: 'EficodeDemoOrg',
         create_actions_variable_name: 'MY_VARIABLE',
         create_actions_variable_value: 'MY_VALUE',
         create_actions_variable_visibility: 'private',
@@ -155,7 +155,7 @@ describe('createActionsVariable', () => {
   it('Creates an organization variable with visibility private (live mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_actions_variable_organization: 'issue-ops',
+        create_actions_variable_organization: 'EficodeDemoOrg',
         create_actions_variable_name: 'MY_VARIABLE',
         create_actions_variable_value: 'MY_VALUE',
         create_actions_variable_visibility: 'private',
@@ -163,12 +163,12 @@ describe('createActionsVariable', () => {
       })
     )
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createActionsVariable(issueOpsInputs)
 
     expect(mocktokit.rest.actions.createOrgVariable).toHaveBeenCalledWith({
-      org: 'issue-ops',
+      org: 'EficodeDemoOrg',
       name: 'MY_VARIABLE',
       value: 'MY_VALUE',
       visibility: 'private'

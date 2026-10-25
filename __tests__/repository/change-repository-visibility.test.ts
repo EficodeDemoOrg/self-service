@@ -27,14 +27,14 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('changeRepositoryVisibility', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     mocktokit.rest.repos.get.mockResolvedValue({
       data: {
@@ -44,7 +44,7 @@ describe('changeRepositoryVisibility', () => {
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        change_repository_visibility_organization: 'issue-ops',
+        change_repository_visibility_organization: 'EficodeDemoOrg',
         change_repository_visibility_name: 'self-service',
         change_repository_visibility_visibility: 'private'
       })
@@ -64,12 +64,12 @@ describe('changeRepositoryVisibility', () => {
   })
 
   it('Changes the visibility (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await changeRepositoryVisibility(issueOpsInputs)
 
     expect(mocktokit.rest.repos.update).toHaveBeenCalledWith({
-      owner: 'issue-ops',
+      owner: 'EficodeDemoOrg',
       repo: 'self-service',
       visibility: 'private'
     })
@@ -84,7 +84,7 @@ describe('changeRepositoryVisibility', () => {
       }
     } as any)
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await changeRepositoryVisibility(issueOpsInputs)
 

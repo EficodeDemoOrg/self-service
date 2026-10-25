@@ -26,7 +26,7 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
@@ -51,7 +51,7 @@ describe('tagApprovers', () => {
 
     expect(issues.addComment).toHaveBeenCalledWith(
       expect.anything(),
-      'issue-ops',
+      'EficodeDemoOrg',
       'self-service',
       1,
       expect.stringContaining('- @octocat')
@@ -68,7 +68,7 @@ describe('tagApprovers', () => {
 
     expect(issues.addComment).toHaveBeenCalledWith(
       expect.anything(),
-      'issue-ops',
+      'EficodeDemoOrg',
       'self-service',
       1,
       expect.stringContaining('- @octocat')

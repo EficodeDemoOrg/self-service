@@ -27,14 +27,14 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('createAnnouncement', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
   })
 
   afterEach(() => {
@@ -44,7 +44,7 @@ describe('createAnnouncement', () => {
   it('Creates an organization announcement (demo mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_announcement_organization: 'issue-ops',
+        create_announcement_organization: 'EficodeDemoOrg',
         create_announcement_expiration_date: '2024-01-01T00:00:00Z',
         create_announcement_user_dismissible: {
           selected: ['Enable'],
@@ -64,7 +64,7 @@ describe('createAnnouncement', () => {
   it('Creates an organization announcement (live mode)', async () => {
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_announcement_organization: 'issue-ops',
+        create_announcement_organization: 'EficodeDemoOrg',
         create_announcement_expiration_date: '2024-01-01T00:00:00Z',
         create_announcement_user_dismissible: {
           selected: ['Enable'],
@@ -74,14 +74,14 @@ describe('createAnnouncement', () => {
       })
     )
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createAnnouncement(issueOpsInputs)
 
     expect(mocktokit.request).toHaveBeenCalledWith(
       'PATCH /orgs/{org}/announcement',
       {
-        org: 'issue-ops',
+        org: 'EficodeDemoOrg',
         announcement: 'Hello, World!',
         expires_at: expect.any(String),
         user_dismissible: true

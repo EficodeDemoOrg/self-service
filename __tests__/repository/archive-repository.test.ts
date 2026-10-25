@@ -27,14 +27,14 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('archiveRepository', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     mocktokit.rest.repos.get.mockResolvedValue({
       data: {
@@ -44,7 +44,7 @@ describe('archiveRepository', () => {
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        archive_repository_organization: 'issue-ops',
+        archive_repository_organization: 'EficodeDemoOrg',
         archive_repository_name: 'self-service'
       })
     )
@@ -63,12 +63,12 @@ describe('archiveRepository', () => {
   })
 
   it('Archives a repository (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await archiveRepository(issueOpsInputs)
 
     expect(mocktokit.rest.repos.update).toHaveBeenCalledWith({
-      owner: 'issue-ops',
+      owner: 'EficodeDemoOrg',
       repo: 'self-service',
       archived: true
     })
@@ -83,7 +83,7 @@ describe('archiveRepository', () => {
       }
     } as any)
 
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await archiveRepository(issueOpsInputs)
 

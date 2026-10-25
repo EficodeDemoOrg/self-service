@@ -27,18 +27,18 @@ const { Octokit } = await import('@octokit/rest')
 const mocktokit = jest.mocked(new Octokit())
 
 const issueOpsInputs = {
-  organization: 'issue-ops',
+  organization: 'EficodeDemoOrg',
   repository: 'self-service',
   issueNumber: 1
 }
 
 describe('createRepository', () => {
   beforeEach(() => {
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
 
     core.getInput.mockReturnValue(
       JSON.stringify({
-        create_repository_organization: 'issue-ops',
+        create_repository_organization: 'EficodeDemoOrg',
         create_repository_name: 'self-service',
         create_repository_description: 'A self-service repository',
         create_repository_visibility: 'public',
@@ -63,12 +63,12 @@ describe('createRepository', () => {
   })
 
   it('Creates a repository (live mode)', async () => {
-    github.context.repo.owner = 'not-issue-ops'
+    github.context.repo.owner = 'not-EficodeDemoOrg'
 
     await createRepository(issueOpsInputs)
 
     expect(mocktokit.rest.repos.createInOrg).toHaveBeenCalledWith({
-      org: 'issue-ops',
+      org: 'EficodeDemoOrg',
       name: 'self-service',
       description: 'A self-service repository',
       visibility: 'public',

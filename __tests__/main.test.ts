@@ -75,12 +75,12 @@ describe('Main', () => {
   beforeEach(() => {
     // Reset the GitHub context
     github.context.eventName = 'issues'
-    github.context.repo.owner = 'issue-ops'
+    github.context.repo.owner = 'EficodeDemoOrg'
     github.context.repo.repo = 'self-service'
 
     // Mock the IssueOps inputs
     inputsMocks.getIssueOpsInputs.mockReturnValue({
-      organization: 'issue-ops',
+      organization: 'EficodeDemoOrg',
       repository: 'self-service',
       issueNumber: 1234
     })
