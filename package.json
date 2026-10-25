@@ -1,16 +1,16 @@
 {
   "name": "issue-ops-self-service",
-  "description": "Self-service IssueOps portal demo",
+  "description": "Self-service IssueOps portal demo - forked",
   "version": "2.0.0",
   "author": "Nick Alteen <ncalteen@github.com>",
   "type": "module",
-  "homepage": "https://github.com/issue-ops/self-service#readme",
+  "homepage": "https://github.com/EficodeDemoOrg/self-service#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/issue-ops/self-service.git"
+    "url": "git+https://github.com/EficodeDemoOrg/self-service.git"
   },
   "bugs": {
-    "url": "https://github.com/issue-ops/self-service/issues"
+    "url": "https://github.com/EficodeDemoOrg/self-service/issues"
   },
   "keywords": [
     "github",
