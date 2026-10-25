@@ -37,7 +37,9 @@ export async function run(): Promise<void> {
   // actually do anything. This repository hosts the self-service page and
   // actions, but shouldn't actually run them!
   if (DEMO_MODE())
-    core.info('Running in `EficodeDemoOrg/self-service`...switching to demo mode!')
+    core.info(
+      'Running in `EficodeDemoOrg/self-service`...switching to demo mode!'
+    )
 
   // This Octokit instance only needs a token with access to the IssueOps
   // repository.
