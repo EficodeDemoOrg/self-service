@@ -7,4 +7,4 @@ import * as github from '@actions/github'
  * running in the `issue-ops` organization.
  */
 export const DEMO_MODE = () =>
-  github.context.repo.owner === 'issue-ops' ? true : false
+  github.context.repo.owner === 'EficodeDemoOrg' ? true : false

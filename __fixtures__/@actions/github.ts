@@ -8,7 +8,7 @@ export const context = {
   job: 'job-name',
   payload: {},
   repo: {
-    owner: 'issue-ops',
+    owner: 'EficodeDemoOrg',
     repo: 'self-service'
   }
 }

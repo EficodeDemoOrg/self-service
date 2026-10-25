@@ -60,8 +60,8 @@ const data = {
 
 const footer = [
   {
-    name: 'issue-ops/self-service',
-    url: 'https://github.com/issue-ops/self-service',
+    name: 'EficodeDemoOrg/self-service',
+    url: 'https://github.com/EficodeDemoOrg/self-service',
     icon: MarkGithubIcon as LucideIcon
   }
 ]

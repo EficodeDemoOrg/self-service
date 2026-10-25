@@ -10,7 +10,7 @@ body:
     attributes:
       label: GitHub Organization
       description: GitHub organization where the repository is located
-      placeholder: github
+      placeholder: EficodeDemoOrg
     validations:
       required: true
   - id: unarchive_repository_name

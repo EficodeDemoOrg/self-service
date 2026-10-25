@@ -1,6 +1,6 @@
 [
   {
-    "approvers": ["@issue-ops/maintainers"],
+    "approvers": ["@EficodeDemoOrg/github-copilot-trainers"],
     "assignees": [],
     "category": "enterprise",
     "description": "Invite a user to an organization.",
@@ -40,7 +40,7 @@
     "name": "GitHub Actions Variable"
   },
   {
-    "approvers": ["@issue-ops/maintainers"],
+    "approvers": ["@EficodeDemoOrg/github-copilot-trainers"],
     "assignees": [],
     "category": "organization",
     "description": "Transfer a repository. Requires enterprise admin approval.",
@@ -50,7 +50,7 @@
     "name": "Repository Transfer"
   },
   {
-    "approvers": ["@issue-ops/maintainers"],
+    "approvers": ["@EficodeDemoOrg/github-copilot-trainers"],
     "assignees": [],
     "category": "repository",
     "description": "Create a new repository in your organization.",
@@ -80,7 +80,7 @@
     "name": "Archive Repository"
   },
   {
-    "approvers": ["@issue-ops/maintainers"],
+    "approvers": ["@EficodeDemoOrg/github-copilot-trainers"],
     "assignees": [],
     "category": "repository",
     "description": "Change the visibility of your repository.",

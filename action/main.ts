@@ -33,11 +33,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  * @returns Resolves when the action is complete.
  */
 export async function run(): Promise<void> {
-  // If this action is running in the `issue-ops/self-service` repository, don't
+  // If this action is running in the `EficodeDemoOrg/self-service` repository, don't
   // actually do anything. This repository hosts the self-service page and
   // actions, but shouldn't actually run them!
   if (DEMO_MODE())
-    core.info('Running in `issue-ops/self-service`...switching to demo mode!')
+    core.info('Running in `EficodeDemoOrg/self-service`...switching to demo mode!')
 
   // This Octokit instance only needs a token with access to the IssueOps
   // repository.
